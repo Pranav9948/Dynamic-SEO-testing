@@ -1,7 +1,7 @@
 import Filters from "@/components/Filters";
 import TourPackage from "@/components/TourPackage";
 import { fetchPackages, getAllPrices, getAllTagsForSitemap } from "@/data/tourpackage";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const revalidate = 86400; // refrsh cached pages only after 24 hours
 
@@ -43,11 +43,13 @@ async function Page({ params }) {
     <div>
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6">Travel Packages</h1>
+        <Suspense fallback={<div>Loading filters...</div>}>
         <Filters
           destination={decodeURIComponent(destination)}
           minPrice={minPrice}
           maxPrice={maxPrice}
         />
+        </Suspense>
         <TourPackage searchParams={searchParams} />
       </div>
     </div>
