@@ -1,8 +1,6 @@
 import { getAllPrices, getAllTagsForSitemap } from "@/data/tourpackage";
 
 export default async function sitemap() {
-
-
   const allTags = await getAllTagsForSitemap();
   const allPrices = await getAllPrices();
 
@@ -21,7 +19,7 @@ export default async function sitemap() {
     // insert other pages here
 
     {
-          url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
       lastModified: "2024-12-31",
       changeFrequency: "yearly",
       priority: 0.8,
@@ -30,5 +28,3 @@ export default async function sitemap() {
     ...searchLandingPages,
   ];
 }
-
-

@@ -8,7 +8,6 @@ import Filters from "@/components/Filters";
 import { Suspense } from "react";
 import PackageListSkeleton from "@/components/PackageListSkeleton";
 import TourPackage from "@/components/TourPackage";
-import dotenv from "dotenv";
 
 export const metadata = {
   title: "Travoxis Technology Sdn Bhd",
@@ -17,11 +16,13 @@ export const metadata = {
 };
 
 export default async function PackagesPage({ searchParams }) {
+  const packages = await fetchPackages(searchParams);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Travel Packages</h1>
 
-      <TourPackage searchParams={searchParams} />
+      <TourPackage packages={packages} searchParams={searchParams} />
     </div>
   );
 }
